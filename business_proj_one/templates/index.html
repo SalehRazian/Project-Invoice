@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Mesbah Al Huda</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Mesbah Al Huda</h1>
+    <form action="/" method="POST">
+    {% if items|length < 1 %}
+    <h4 style="text-align: center">Empty Database</h4>
+    {% else %}
+    
+    <table>
+        <tr>
+            <th>DESCRIPTION</th>
+            <th>QTY TYPE</th>
+            <th>PRICE</th>
+            <th>SELECT</th>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.description }}</td>
+                <td>{{ item.qty_type }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                    
+                        <input type="checkbox" name="item" value="{{item.id}}">
+                    
+                </td>
+            </tr>
+        
+        {% endfor %}
+    </table>
+
+    {% endif %}
+        <input type="submit" name="btn" value="Create Table">
+        <input type="text" placeholder="description" name="description">
+        <input type="text" placeholder="qty_type" name="qty_type">
+        <input type="text" placeholder="price" name="price">
+        <input type="submit" name="btn" value="ADD ITEM">
+    </form>
+</div>  
+{% endblock %}
